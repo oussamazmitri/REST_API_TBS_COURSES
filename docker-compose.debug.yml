@@ -1,0 +1,9 @@
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+      - "5678:5678"
+    volumes:
+      - .:/app
+    command: sh -c "pip install debugpy && python -m debugpy --wait-for-client --listen 0.0.0.0:5678 -m flask run --host=0.0.0.0 --no-debugger"
